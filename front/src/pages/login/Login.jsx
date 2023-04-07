@@ -1,7 +1,9 @@
 import "./login.scss"
 
-export const Login = () => {
+const Login = () => {
   return (
-    <div>Login</div>
+    <div className="login">Login</div>
   )
 }
+
+export default Login
