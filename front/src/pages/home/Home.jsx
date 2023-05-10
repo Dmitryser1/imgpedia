@@ -9,7 +9,6 @@ const Home = () => {
     <div className="home">
       <Stories/>
       <Share/>
-      <Image_list/>
       <Posts/>
     </div>
   )
