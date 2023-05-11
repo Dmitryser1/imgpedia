@@ -16,6 +16,7 @@ import "./style.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/authContext";
+import Album from "./pages/album/Album";
 
 function App() {
   const {currentUser} = useContext(AuthContext);
@@ -68,7 +69,9 @@ function App() {
           path: "*",
           element: <Error/>,
         },
-      ],
+          path: "/album/:id",
+          element: <Album />,
+        },
     },
     {
       path: "/login",

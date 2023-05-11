@@ -17,12 +17,12 @@ const Profile = () => {
     <div className="profile">
       <div className="images">
         <img
-          src="https://www.readingmuseum.org.uk/sites/default/files/styles/main_image__r/public/images/Trinity%20I%20Albert%20Irvin%20%281%29%20%281%29.jpg?itok=UzINy2yO"
+          src={imgbg}
           alt=""
           className="cover"
         />
         <img
-          src="https://t3.ftcdn.net/jpg/03/45/05/92/240_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.jpg"
+          src={profile_image}
           alt=""
           className="profilePic"
         />
