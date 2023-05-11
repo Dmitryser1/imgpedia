@@ -1,4 +1,21 @@
-import Login from './pages/login/Login';
+import Login from "./pages/login/Login";
+import Register from "./pages/register/Register";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Route,
+  Outlet,
+  Navigate,
+} from "react-router-dom";
+import Navbar from "./components/navbar/Navbar";
+import Home from "./pages/home/Home";
+import Profile from "./pages/profile/Profile";
+import "./style.scss";
+import { useContext } from "react";
+import { DarkModeContext } from "./context/darkModeContext";
+import { AuthContext } from "./context/authContext";
+import Album from "./pages/album/Album";
+
 
 
 function App() {
@@ -38,7 +55,7 @@ function App() {
       children: [
         {
           path: "/",
-          element: <Home />,
+          element: <Home/>  ,
         },
         {
           path: "/profile/:id",
