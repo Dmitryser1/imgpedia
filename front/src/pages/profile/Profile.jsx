@@ -9,7 +9,8 @@ import PlaceIcon from "@mui/icons-material/Place";
 import LanguageIcon from "@mui/icons-material/Language";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import Posts from "../../components/posts/Posts"
+import Posts from "../../components/posts/Posts";
+import Image_list from "../../components/Imagelist/Image_list_prof"
 
 const Profile = () => {
   return (
@@ -31,7 +32,10 @@ const Profile = () => {
           <div className="left">           
           </div>
           <div className="center">
-            <span>Joe Who</span>
+            <span>John Doe</span>
+            <div>
+                <a> Info about user</a>
+            </div>
             <div className="info">
               <div className="item">
                 <PlaceIcon />
@@ -44,12 +48,9 @@ const Profile = () => {
             </div>
           </div>
           <div className="right">
-            <EmailOutlinedIcon />
-            <MoreVertIcon />
           </div>
         </div>
-        <Stories/>
-      <Posts/>
+        <Image_list/>
       </div>
     </div>
   );

@@ -8,8 +8,10 @@ import {
   Navigate,
 } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
+import Error from "./pages/error/Error_page";
 import Home from "./pages/home/Home";
 import Profile from "./pages/profile/Profile";
+import Moder from "./pages/moder/Moder";
 import "./style.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
@@ -58,6 +60,14 @@ function App() {
           path: "/profile/:id",
           element: <Profile />,
         },
+        {
+          path: "/moderator",
+          element: <Moder />,
+        },
+        {
+          path: "*",
+          element: <Error/>,
+        },
       ],
     },
     {
@@ -67,6 +77,10 @@ function App() {
     {
       path: "/register",
       element: <Register />,
+    },
+    {
+      path: "/moderator",
+      element: <Moder />,
     },
   ]);
 

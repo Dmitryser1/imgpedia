@@ -7,16 +7,8 @@ import IconButton from '@mui/material/IconButton';
 import InfoIcon from '@mui/icons-material/Info';
 import { colors } from '@mui/material';
 
-function srcset(image, size, rows = 1, cols = 1) {
-  return {
-    src: `${image}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format`,
-    srcSet: `${image}?w=${size * cols}&h=${
-      size * rows
-    }&fit=crop&auto=format&dpr=2 2x`,
-  };
-}
 
-export default function QuiltedImageList() {
+export default function Image_list_prof() {
   return (
     <ImageList
       sx={{ width: 1, height: 1 }}
@@ -26,11 +18,16 @@ export default function QuiltedImageList() {
       {itemData.map((item) => (
         <ImageListItem key={item.img} cols={item.cols || 1} rows={item.rows || 1}>
           <img
-            {...srcset(item.img, 121, item.rows, item.cols)}
+            src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
+            srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
             alt={item.title}
             loading="lazy"
           />
-
+                    <ImageListItemBar
+            sx={{}}
+            title={item.title}
+            subtitle={item.author}
+          />
         </ImageListItem>
       ))}
     </ImageList>
@@ -63,8 +60,6 @@ const itemData = [
     img: 'https://t3.ftcdn.net/jpg/03/45/05/92/240_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.jpg',
     title: 'Pic_name',
     author: '@author',
-    rows: 2,
-    cols: 2,
   }, 
   {
     img: 'https://t3.ftcdn.net/jpg/03/45/05/92/240_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.jpg',
@@ -110,8 +105,6 @@ const itemData = [
     img: 'https://t3.ftcdn.net/jpg/03/45/05/92/240_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.jpg',
     title: 'Pic_name',
     author: '@author',
-    rows: 2,
-    cols: 2,
   },
   {
     img: 'https://t3.ftcdn.net/jpg/03/45/05/92/240_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.jpg',
@@ -162,8 +155,6 @@ const itemData = [
     img: 'https://t3.ftcdn.net/jpg/03/45/05/92/240_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.jpg',
     title: 'Pic_name',
     author: '@author',
-    rows: 2,
-    cols: 2,
   }, 
   {
     img: 'https://t3.ftcdn.net/jpg/03/45/05/92/240_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.jpg',
@@ -214,8 +205,6 @@ const itemData = [
     img: 'https://t3.ftcdn.net/jpg/03/45/05/92/240_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.jpg',
     title: 'Pic_name',
     author: '@author',
-    rows: 2,
-    cols: 2,
   }, 
   {
     img: 'https://t3.ftcdn.net/jpg/03/45/05/92/240_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.jpg',
