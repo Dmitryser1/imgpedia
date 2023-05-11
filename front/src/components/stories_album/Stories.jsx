@@ -3,6 +3,10 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+import { Container } from '@mui/material';
+import imgbg from "../../assets/img1.jpg";
+import Button  from '@mui/material/Button';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -15,8 +19,27 @@ const Item = styled(Paper)(({ theme }) => ({
 function FormRow() {
   return (
     <React.Fragment>
+      <Container fixed>
+      <Grid container
+          direction="column"
+          justifyContent="left"
+          alignItems="flex-start"
+         
+        >
+      <Grid item sx={{width : 1, height: 1}} >
+        <Item> <Button variant="outlined" startIcon={<HighlightOffIcon />}>
+                Delete
+              </Button>
+                    <img 
+                    src={imgbg}
+                    alt=""
+        /></Item>
+      </Grid>
       <Grid item xs={'auto'}>
-        <Item> <img
+        <Item> <Button variant="outlined" startIcon={<HighlightOffIcon />}>
+          Delete
+        </Button>
+        <img
           src="https://t3.ftcdn.net/jpg/03/45/05/92/240_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.jpg"
           alt=""
         /></Item>
@@ -33,24 +56,8 @@ function FormRow() {
           alt=""
         /></Item>
       </Grid>
-      <Grid item xs={'auto'}>
-        <Item> <img
-          src="https://t3.ftcdn.net/jpg/03/45/05/92/240_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.jpg"
-          alt=""
-        /></Item>
       </Grid>
-      <Grid item xs={'auto'}>
-        <Item> <img
-          src="https://t3.ftcdn.net/jpg/03/45/05/92/240_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.jpg"
-          alt=""
-        /></Item>
-      </Grid>
-      <Grid item xs={'auto'}>
-        <Item> <img
-          src="https://t3.ftcdn.net/jpg/03/45/05/92/240_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.jpg"
-          alt=""
-        /></Item>
-      </Grid>
+      </Container>
 
     </React.Fragment>
   );
@@ -60,12 +67,6 @@ export default function NestedGrid() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={'auto'}>
-        <Grid container item spacing={'auto'}>
-          <FormRow />
-        </Grid>
-        <Grid container item spacing={'auto'}>
-          <FormRow />
-        </Grid>
         <Grid container item spacing={'auto'}>
           <FormRow />
         </Grid>

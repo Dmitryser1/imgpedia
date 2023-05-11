@@ -9,19 +9,21 @@ import PlaceIcon from "@mui/icons-material/Place";
 import LanguageIcon from "@mui/icons-material/Language";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import Posts from "../../components/posts/Posts"
+import Posts from "../../components/posts/Posts";
+import imgbg from "../../assets/img1.jpg";
+import profile_image from "../../assets/kermit.jpg";
 
 const Profile = () => {
   return (
     <div className="profile">
       <div className="images">
         <img
-          src="https://www.readingmuseum.org.uk/sites/default/files/styles/main_image__r/public/images/Trinity%20I%20Albert%20Irvin%20%281%29%20%281%29.jpg?itok=UzINy2yO"
+          src={imgbg}
           alt=""
           className="cover"
         />
         <img
-          src="https://t3.ftcdn.net/jpg/03/45/05/92/240_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.jpg"
+          src={profile_image}
           alt=""
           className="profilePic"
         />
@@ -31,7 +33,7 @@ const Profile = () => {
           <div className="left">           
           </div>
           <div className="center">
-            <span>Joe Who</span>
+            <span>Игорь Барсуков</span>
             <div className="info">
               <div className="item">
                 <PlaceIcon />

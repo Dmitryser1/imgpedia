@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 
+
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
@@ -11,9 +12,9 @@ export const AuthContextProvider = ({ children }) => {
     //TO DO
     setCurrentUser({
       id: 1,
-      name: "Joe Who",
+      name: "Игорь",
       profilePic:
-        "https://t3.ftcdn.net/jpg/02/48/42/64/240_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg",
+        "https://i.pinimg.com/736x/83/ae/d6/83aed6035fb1722d287719a87624a831.jpg",
     });
   };
 
