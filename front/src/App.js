@@ -66,12 +66,14 @@ function App() {
           element: <Moder />,
         },
         {
-          path: "*",
-          element: <Error/>,
-        },
           path: "/album/:id",
           element: <Album />,
         },
+        {
+          path: "*",
+          element: <Error/>,
+        },
+      ],
     },
     {
       path: "/login",

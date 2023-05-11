@@ -1,4 +1,4 @@
-import "./post.scss";
+import "./comment_album.scss";
 import DoneIcon from '@mui/icons-material/Done';
 import CloseIcon from '@mui/icons-material/Close';
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
@@ -6,7 +6,7 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-const Post = ({ post }) => {
+const Comment_album = ({ comment_album }) => {
 
   //TEMPORARY
 
@@ -15,13 +15,13 @@ const Post = ({ post }) => {
       <div className="container">
         <div className="user">
           <div className="userInfo">
-            <img src={post.profilePic} alt="" />
+            <img src={comment_album.profilePic} alt="" />
             <div className="details">
               <Link
-                to={`/profile/${post.userId}`}
+                to={`/profile/${comment_album.userId}`}
                 style={{ textDecoration: "none", color: "inherit" }}
               >
-                <span className="name">{post.name}</span>
+                <span className="name">{comment_album.name}</span>
               </Link>
               <span className="date">1 min ago</span>
             </div>
@@ -29,26 +29,11 @@ const Post = ({ post }) => {
           <MoreHorizIcon />
         </div>
         <div className="content">
-          <p>{post.desc}</p>
-          <img src={post.img} alt="" />
-        </div>
-        <div className="info">
-          <div className="item">
-            <DoneIcon /> 
-            Apply
-          </div>
-          <div className="item" >
-            <CloseIcon />
-            Decline
-          </div>
-          <div className="item">
-            <ShareOutlinedIcon />
-            Album
-          </div>
+          <p>{comment_album.desc}</p>
         </div>
       </div>
     </div>
   );
 };
 
-export default Post;
+export default Comment_album;

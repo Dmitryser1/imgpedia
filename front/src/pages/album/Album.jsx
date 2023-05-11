@@ -1,14 +1,15 @@
 import "./album.scss";
-import Stories from "../../components/stories_album/Stories";
+import Image_list_album from "../../components/Imagelist/Image_list_album";
 import imgbg from "../../assets/img1.jpg";
 import { Typography, Avatar, Box, Tab, Tabs, Card, CardContent, Button, CardActions } from "@mui/material";
 import profile_image from "../../assets/kermit.jpg";
 import InfoIcon from '@mui/icons-material/Info';
 import Dialog from "../../components/dialog/Dialog";
 import Upload from "../../components/uploadimage/UploadImage"
-import Posts from "../../components/posts/Posts";
+import Comments_album from "../../components/comments_album/Comments_album";
 import Share from "../../components/share/Share"
 import Appeal from "../../components/appeal/Appeal"
+import ImageListItem from '@mui/material/ImageListItem';
 
 
   
@@ -60,12 +61,18 @@ const Album = () => {
                             <Tab label= "Posts" disabled /> 
                         </Tabs>
                         <Share/>
-                        <Posts/>
+                        <Comments_album/>
                         <Appeal/>
                     </div>
                 </div>
                     <div className="image_list">
-                        <Stories/>
+                    <ImageListItem>
+                    <img
+                         src={imgbg}
+                        loading="lazy"
+                    />
+                    </ImageListItem>
+                        <Image_list_album/>
                     </div>
             </div>
 
@@ -79,12 +86,3 @@ const Album = () => {
 
 
 export default Album;
-
-//<Box sx={{ width: '100%', maxWidth: 500, mt: 10, px : 27, border: 1} }>
-//<Typography variant="p" component="p" >
-//Добрый день, я не знаю кто с горы, приятно познакомиться, вот мои ссылки на соцсети не знаю кто с горы, приятно познакомиться, вот мои ссылки на соцсетине знаю кто с горы, приятно познакомиться, вот мои ссылки на соцсетине знаю кто с горы, приятно познакомиться, вот мои ссылки на соцсетине знаю кто с горы, приятно познакомиться, вот мои ссылки на соцсети
-//</Typography>
-//</Box>
-//<Typography variant="body2" sx={{mt:10, color: 'gray'}}>
-//#digital_art #drawning #fantasy #Digital 2D #Concept Art
-//</Typography>

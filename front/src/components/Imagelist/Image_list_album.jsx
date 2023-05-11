@@ -6,15 +6,25 @@ import ListSubheader from '@mui/material/ListSubheader';
 import IconButton from '@mui/material/IconButton';
 import InfoIcon from '@mui/icons-material/Info';
 import { colors } from '@mui/material';
+import imgbg from '../../assets/img1.jpg';
 
+function srcset(image, size, rows = 1, cols = 1) {
+  return {
+    src: `${image}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format`,
+    srcSet: `${image}?w=${size * cols}&h=${
+      size * rows
+    }&fit=crop&auto=format&dpr=2 2x`,
+  };
+}
 
-export default function Image_list_prof() {
+export default function QuiltedImageList() {
   return (
     <ImageList
       sx={{ width: 1, height: 1 }}
       variant="quilted"
-      cols={8}
+      cols={4}
     >
+      
       {itemData.map((item) => (
         <ImageListItem key={item.img} cols={item.cols || 1} rows={item.rows || 1}>
           <img
@@ -23,10 +33,7 @@ export default function Image_list_prof() {
             alt={item.title}
             loading="lazy"
           />
-                    <ImageListItemBar
-            title={item.title}
-            subtitle={item.author}
-          />
+
         </ImageListItem>
       ))}
     </ImageList>

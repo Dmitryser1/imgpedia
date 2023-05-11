@@ -11,6 +11,8 @@ import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Posts from "../../components/posts/Posts";
 import Image_list from "../../components/Imagelist/Image_list_prof"
+import imgbg from "../../assets/img1.jpg";
+import profile_image from "../../assets/kermit.jpg";
 
 const Profile = () => {
   return (
