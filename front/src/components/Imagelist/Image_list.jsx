@@ -26,7 +26,7 @@ export default function QuiltedImageList() {
       {itemData.map((item) => (
         <ImageListItem key={item.img} cols={item.cols || 1} rows={item.rows || 1}>
           <img
-            {...srcset(item.img, 121, item.rows, item.cols)}
+            {...srcset(item.img, 120, item.rows, item.cols)}
             alt={item.title}
             loading="lazy"
           />
