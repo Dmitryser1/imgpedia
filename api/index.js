@@ -1,13 +1,34 @@
-const express= require('express')
-const pool = require('./db')
+require('dotenv').config()
+const express = require('express')
+const sequelize = require('./db')
+const models = require('./models/models.js')
+//const pool = require('./db')
 const cors = require('cors')
+const router = require('./routes/index.js')
+
 const PORT = process.env.PORT || 8800
-
-
 const app = express()
+
+app.use(cors())
+app.use(express.json())
+app.use('/api', router)
+
+const start = async () => {
+    try {
+        await sequelize.authenticate()
+        await sequelize.sync()
+        app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
+    } catch (e){
+        console.log(e)
+    }
+}
+start()
+
+/*
 app.use(cors())
 app.use(express.json())
 //Create User
+
 app.post('/client', async(req,res) => {
     const {name, characteristic, profilePhoto ,password, email} = req.body
     const newClient = await pool.query('INSERT INTO client (name, characteristic, profilePhoto ,password, email) VALUES ($1,$2,$3,$4,$5) RETURNING * ',[name, characteristic, profilePhoto ,password, email])
@@ -33,6 +54,7 @@ app.delete('/client/:id', async(req,res) => {
     const client = await pool.query ('DELETE FROM client where clientId=$1',[clientId])
     res.json(client.rows)
 })
+*/
 
 
-app.listen(PORT, () => console.log("server started on port", {PORT}))
+//app.listen(PORT, () => console.log("server started on port", {PORT}))
