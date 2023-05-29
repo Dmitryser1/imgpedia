@@ -1,11 +1,9 @@
 const Router = require('express')
 const router = new Router()
-const UserController = require(' ../controller/user.controller')
+const PhotoController = require('../controller/photos_controller.js')
 
-router.post('/client', UserController.createUser)
-router.get('/client', UserController.getUsers)
-router.get('/client', UserController.getOneUser)
-router.put('/client', UserController.updateUser)
-router.delete('/client', UserController.deleteUser)
+
+router.get('/', PhotoController.getAll )
+//router.delete('/', PhotoController.del)
 
 module.exports = router
