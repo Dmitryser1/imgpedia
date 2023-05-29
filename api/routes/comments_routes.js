@@ -1,11 +1,10 @@
 const Router = require('express')
 const router = new Router()
+const authMiddleware = require('../middleware/authMiddleware')
+const CommentsController = require('../controller/comments_controller')
 
-router.use('/users')
-router.use('/types')
-router.use('/galleries')
-router.use('/photos')
-router.use('/complaints')
-router.use('/comments')
+router.post('/', authMiddleware, CommentsController.create)
+router.get('/', CommentsController.getAll )
+
 
 module.exports = router
