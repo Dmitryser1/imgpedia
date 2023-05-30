@@ -10,7 +10,10 @@ class GalleryController{
         try{
 
             const {GalleryName} = req.body
-            let  Mainphoto = req.files.photo
+            //let  Mainphoto = req.files/photo
+            const  {Mainphoto} = req.files
+            
+            console.log("121212", path.resolve(__dirname, '...', 'static', filename))
             let filename = uuid.v4() + '.jpg'
             await Mainphoto.mv(path.resolve(__dirname, '...', 'static', filename))
 

@@ -5,7 +5,7 @@ const sequelize = require('../db')
 const uuid = require('uuid')
 const path = require('path')
 const fs = require('fs');
-const {User} = require('../models/models')
+const {User, Gallery} = require('../models/models')
 
 
 
@@ -19,7 +19,7 @@ const generateJwt = (id, email,name, role) => {
 }
 class UserController{
     async registration(req, res, next){
-        const {email, password,name, role} = req.body
+        const {email, password, name, role} = req.body
         if(!email || !password) {
             return next(ApiError.badRequest('Неверный пароль или email'))
         }
@@ -55,7 +55,23 @@ class UserController{
     return res.json(user)
     }
 
-
+    async GetUserInfo(req, res){
+        let {id} = req.query
+        const t = await sequelize.transaction()
+        try{
+            let UserInf = await User.findOne({where:{id}},{transaction:t})
+            let WhomId = id
+            let GalleryInfo = await Gallery.findAll({where:{WhomId}},{transaction:t})
+            await t.commit()
+            let {email} = UserInf
+            let Us = {email}
+            let Obj = {Us, GalleryInfo}
+            return res.json(Obj)
+        }
+        catch (e) {
+            await t.rollback()
+        }
+    }
     
     async UpdatePhoto(req, res, next) {
         console.log("s11111111")
@@ -66,9 +82,9 @@ class UserController{
             let photo = req.files.photo
             console.log(photo)
             console.log(Id,photo,"hui")
-            let Maxim = await User.findOne({where:{id:Id}})
-            if(Maxim.photo){
-                fs.unlink(`../server/static/${Maxim.photo}`,(err) => {
+            let Dimka = await User.findOne({where:{id:Id}})
+            if(Dimka.photo){
+                fs.unlink(`../server/static/${Dimka.photo}`,(err) => {
                     if (err) {
                         console.error(err);
                         return;
@@ -77,9 +93,9 @@ class UserController{
             })}
                 let filename = uuid.v4() + ".jpg"
                 await photo.mv(path.resolve(__dirname, '..', 'static', filename))
-                Maxim.photo = filename
-                await Maxim.save()
-                return res.json(Maxim.photo)
+                Dimka.photo = filename
+                await Dimka.save()
+                return res.json(Dimka.photo)
             }
          catch (e) {
             next(ApiError.badRequest("Something wrong"))
