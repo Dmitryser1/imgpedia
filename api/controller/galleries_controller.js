@@ -1,4 +1,4 @@
-const {Gallery, Photo} = require('../models/models.js')
+const {Photo, Galleries} = require('../models/models.js')
 const ApiError = require('../error/ApiError.js')
 const uuid = require('uuid')
 const path = require('path')
@@ -10,17 +10,17 @@ class GalleryController{
         try{
 
             const {GalleryName} = req.body
-            //let  Mainphoto = req.files/photo
             const  {Mainphoto} = req.files
             
-            console.log("121212", path.resolve(__dirname, '...', 'static', filename))
             let filename = uuid.v4() + '.jpg'
+
+            console.log("121212", path.resolve(__dirname, '...', 'static', filename))
+           
             await Mainphoto.mv(path.resolve(__dirname, '...', 'static', filename))
 
-            let UsersId = req.user.id
-            const gallery = await Gallery.create({GalleryName, Mainphoto, UsersId})
+            let UserId = req.user.id
+            const gallery = await Galleries.create({GalleryName, Mainphoto, UserId})
             return res.json(gallery)
-
         } catch(e){
             next(ApiError.badRequest("Something wrong"))
         }
@@ -30,16 +30,16 @@ class GalleryController{
         let UserId = req.user.id
         if(!UserId){ // Для вывода на страничке Димы всех галерей
             let gallery 
-            gallery = await Gallery.findAndCountAll()
+            gallery = await Galleries.findAndCountAll()
         }
-        else if (UserId) {gallery = await Gallery.findAll({where: {UserId}})}
+        else if (UserId) {gallery = await Galleries.findAll({where: {UserId}})}
         return res.json(gallery)
     }
 
     async del(req, res, next) { //Удаление самой галереи
         try{
             const {id} = req.body
-            await Gallery.destroy( {
+            await Galleries.destroy( {
                 where:{id:id}
             })
             return res.json()
@@ -64,11 +64,11 @@ class GalleryController{
     async updatePhoto(req, res, next){
         try{ // Создает обьект фотку с привязкой к галерее, Котороую мы передаем ( в текущую, тут будет где-то метод гета по всем фото, которая этой галерее принадлежат)
             const {GalleryId} = req.body
-            let photo1 = req.files.photo
+            const {photo} = req.files
             let filename = uuid.v4() + '.jpg'
             await photo.mv(path.resolve(__dirname, '...', 'static', filename))
-            const photo = await Photo.create({GalleryId, photo1})
-            return res.json(Photo)
+            const photos = await Photo.create({GalleryId, photo})
+            return res.json(photos)
 
         } catch(e){
             next(ApiError.badRequest("Something wrong"))

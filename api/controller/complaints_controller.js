@@ -5,7 +5,6 @@ class complaintsController{
     async create (req, res, next){
         try{
             const {text, status} = req.body
-    
             let UserId = req.user.id
            
             const complaint = await Complaint.create({text, status, UserId})
