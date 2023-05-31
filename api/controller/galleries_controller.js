@@ -8,31 +8,34 @@ const fs = require('fs');
 class GalleryController{
     async create(req, res, next){
         try{
-
+            
             const {GalleryName} = req.body
             const  {Mainphoto} = req.files
-            
+        
             let filename = uuid.v4() + '.jpg'
-
-            console.log("121212", path.resolve(__dirname, '...', 'static', filename))
+            
+            console.log("121212", path.resolve(__dirname, '..', 'static', filename))
            
-            await Mainphoto.mv(path.resolve(__dirname, '...', 'static', filename))
+            await Mainphoto.mv(path.resolve(__dirname, '..', 'static', filename))
 
             let UserId = req.user.id
-            const gallery = await Galleries.create({GalleryName, Mainphoto, UserId})
+            console.log("123", UserId, GalleryName, Mainphoto)
+
+            const gallery = await Galleries.create({GalleryName, Mainphoto: filename, UserId})
             return res.json(gallery)
         } catch(e){
             next(ApiError.badRequest("Something wrong"))
         }
     }
 
-    async getAll(req, res){
+    async getAllGalleryCarrentUser(req, res){
         let UserId = req.user.id
-        if(!UserId){ // Для вывода на страничке Димы всех галерей
-            let gallery 
-            gallery = await Galleries.findAndCountAll()
-        }
-        else if (UserId) {gallery = await Galleries.findAll({where: {UserId}})}
+        let gallery = await Galleries.findAll({where: {UserId}})
+        return res.json(gallery)
+    }
+
+    async getAllGallery(req, res){
+        let gallery = await Galleries.findAll()
         return res.json(gallery)
     }
 

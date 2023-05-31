@@ -5,9 +5,9 @@ const authMiiddleware = require('../middleware/authMiddleware')
 
 
 router.post('/', authMiiddleware, GalleriesController.create)
-router.get('/', GalleriesController.getAll)
+router.get('/userg', GalleriesController.getAllGalleryCarrentUser)
+router.get('/', GalleriesController.getAllGallery)
 router.get('/:id', GalleriesController.getAllPhoto)
-
 router.post('/:id/update', authMiiddleware, GalleriesController.updatePhoto )
 
 

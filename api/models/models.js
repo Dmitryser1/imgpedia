@@ -11,7 +11,7 @@ const User = sequelize.define('User', {
     charasteristic: {type: DataTypes.STRING, allowNull: true},
 })
 
-const Galleries = sequelize.define('Gallery', {
+const Galleries = sequelize.define('Galleries', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     GalleryName: {type: DataTypes.STRING, unique:false},
     Mainphoto: {type: DataTypes.STRING},
