@@ -54,8 +54,8 @@ class GalleryController{
     
     async getAllPhoto(req, res, next){ //Возращает все фото, которые принадлежат галерее
         try{
-            const {id} = req.params.id
-            let photo = await Photo.findAll({where:{id}})
+            const {id} = req.params
+            let photo = await Photo.findAll({where:{GalleryId: id}})
             return res.json(photo)
 
         }catch(e){
@@ -69,8 +69,8 @@ class GalleryController{
             const {GalleryId} = req.body
             const {photo} = req.files
             let filename = uuid.v4() + '.jpg'
-            await photo.mv(path.resolve(__dirname, '...', 'static', filename))
-            const photos = await Photo.create({GalleryId, photo})
+            await photo.mv(path.resolve(__dirname, '..', 'static', filename))
+            const photos = await Photo.create({GalleryId, photo: filename})
             return res.json(photos)
 
         } catch(e){
