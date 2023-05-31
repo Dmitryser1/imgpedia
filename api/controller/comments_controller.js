@@ -2,17 +2,28 @@ const {Comments} = require('../models/models.js')
 
 
 class CommentsController{
-    async create(req, res){
-        const {Text, GalleryId} = req.body
-        let UserId = req.user.id
-        const Comment = await Comments.create({Text, UserId, GalleryId})
-        return res.json(Comment)
+    async create(req, res, next){
+        try{
+            const {text, galleryId} = req.body
+            let UserId = req.user.id
+            //let UserId = '1'
+            const Comment = await Comments.create({text, galleryId, UserId})
+            return res.json(Comment)
+        } catch(e){
+            next(ApiError.badRequest("Something wrong"))
+        }
+        
     }
 
     async getAll(req, res){
-        const {UserId, GalleryId} = req.query
-        let Comment = await Comments.findAll({where: {UserId, GalleryId}})
+        try{
+        const {galleryId} = req.query
+        console.log(galleryId)
+        let Comment = await Comments.findAll({where: {galleryId}})
         return res.json(Comment)
+            } catch(e){
+                next(ApiError.badRequest("Something wrong"))
+            }
     }
 
 }
