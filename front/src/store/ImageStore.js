@@ -1,25 +1,50 @@
 import { makeAutoObservable} from 'mobx'
-export default class UserStore {
+export default class ImageStore {
     constructor() {
-        this._isAuth=false
-        this._user ={}
+        this._photos =[
+            {
+                img: 'https://t3.ftcdn.net/jpg/03/45/05/92/240_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.jpg',
+                title: 'Pic_name',
+                author: '@author',
+              },
+              {
+                img: 'https://t3.ftcdn.net/jpg/03/45/05/92/240_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.jpg',
+                title: 'Pic_name',
+                author: '@author',
+              },
+              {
+                img: 'https://t3.ftcdn.net/jpg/03/45/05/92/240_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.jpg',
+                title: 'Pic_name',
+                author: '@author',
+              }, 
+              {
+                img: 'https://t3.ftcdn.net/jpg/03/45/05/92/240_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.jpg',
+                title: 'Pic_name',
+                author: '@author',
+              }, 
+              {
+                img: 'https://t3.ftcdn.net/jpg/03/45/05/92/240_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.jpg',
+                title: 'Pic_name',
+                author: '@author',
+                rows: 2,
+                cols: 2,
+              }, 
+              {
+                img: 'https://t3.ftcdn.net/jpg/03/45/05/92/240_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.jpg',
+                title: 'Pic_name',
+                author: '@author',
+              }, 
+        ]
         makeAutoObservable(this)
     }
 
-    setIsAuth(bool){
-        this._isAuth = bool
+
+    setPhoto(photos){
+        this._photos = photos
     }
 
-    setUser(user){
-        this._user = user
-    }
-
-    isAuth(){
-        return this._isAuth
-    }
-
-    getUser(){
-        return this._user
+    getPhoto(){
+        return this._photos
     }
 
 }

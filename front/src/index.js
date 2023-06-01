@@ -4,13 +4,15 @@ import App from "./App";
 import { AuthContextProvider } from "./context/authContext";
 import { DarkModeContextProvider } from "./context/darkModeContext";
 import UserStore from "./store/UserStore";
+import ImageStore from "./store/ImageStore";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 export const Context = createContext(null)
 root.render(
   <React.StrictMode>
     <Context.Provider value={{
-        user: new UserStore()
+        user: new UserStore(),
+        image: new ImageStore(),
     }}>
     <DarkModeContextProvider>
       <AuthContextProvider>
