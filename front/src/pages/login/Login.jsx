@@ -2,18 +2,23 @@ import { useContext , useState} from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../../context/authContext";
 import "./login.scss";
-import { registration } from "../../http/userAPI";
+import { login } from "../../http/userAPI";
 import { LOGIN_ROUTE } from "../../utils/consts";
+import { observer } from "mobx-react-lite";
+import { Context } from "../..";
 
-const Login = () => {
+const Login = observer(() => {
+  const {user} = useContext(Context)
   const location = useLocation()
   const isLogin = location.pathname === LOGIN_ROUTE
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const handleLogin = async () => {
-    const response = await registration()
-    console.log(response)
+    let data;
+    data = await login(email, password)
+    user.setUser(user)
+    user.setIsAuth(true)
   };
 
   return (
@@ -42,6 +47,7 @@ const Login = () => {
       </div>
     </div>
   );
-};
+
+});
 
 export default Login;
