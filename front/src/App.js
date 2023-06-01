@@ -34,9 +34,8 @@ function App() {
 
   return (
       <BrowserRouter>
-        <Layout>
+        <Layout/>
         <AppRouter/>
-        </Layout>
       </BrowserRouter>
   );
 }
