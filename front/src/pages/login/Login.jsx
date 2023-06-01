@@ -1,13 +1,19 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useContext , useState} from "react";
+import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../../context/authContext";
 import "./login.scss";
+import { registration } from "../../http/userAPI";
+import { LOGIN_ROUTE } from "../../utils/consts";
 
 const Login = () => {
-  const { login } = useContext(AuthContext);
+  const location = useLocation()
+  const isLogin = location.pathname === LOGIN_ROUTE
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
-  const handleLogin = () => {
-    login();
+  const handleLogin = async () => {
+    const response = await registration()
+    console.log(response)
   };
 
   return (
@@ -28,8 +34,8 @@ const Login = () => {
         <div className="right">
           <h1>Login</h1>
           <form>
-            <input type="text" placeholder="Username" />
-            <input type="password" placeholder="Password" />
+            <input type="text" placeholder="Username" value={email} onChange={e => setEmail(e.target.value)} />
+            <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
             <button onClick={handleLogin}>Login</button>
           </form>
         </div>
