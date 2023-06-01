@@ -11,15 +11,17 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { AuthContext } from "../../context/authContext";
+import { HOME_ROUTE } from "../../utils/consts";
+import { Context } from "../..";
 
 const Navbar = () => {
   const { toggle, darkMode } = useContext(DarkModeContext);
-  const { currentUser } = useContext(AuthContext);
+  const { user } = useContext(Context);
 
   return (
     <div className="navbar">
       <div className="left">
-        <Link to="/" style={{ textDecoration: "none" }}>
+        <Link to={HOME_ROUTE} style={{ textDecoration: "none" }}>
           <span>Home</span>
         </Link>
         {darkMode ? (
@@ -34,16 +36,14 @@ const Navbar = () => {
         </div>
       </div>
       <div className="right">
-        <PersonOutlinedIcon />
-        <NotificationsOutlinedIcon />
         <div className="user">
         <Link to="/profile/1" style={{ textDecoration: "none" }}>
           <img
-            src={currentUser.profilePic}
+            src={user.profilePic}
             alt=""
           />
         </Link>
-          <span>{currentUser.name}</span>
+          <span>{user.name}</span>
         </div>
       </div>
     </div>
