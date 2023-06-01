@@ -6,6 +6,7 @@ import {
   Route,
   Outlet,
   Navigate,
+  BrowserRouter,
 } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import Error from "./pages/error/Error_page";
@@ -17,9 +18,9 @@ import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/authContext";
 import Album from "./pages/album/Album";
+import AppRouter from "./components/AppRouter";
 
 function App() {
-  const {currentUser} = useContext(AuthContext);
 
   const { darkMode } = useContext(DarkModeContext);
 
@@ -36,63 +37,11 @@ function App() {
     );
   };
 
-  const ProtectedRoute = ({ children }) => {
-    if (!currentUser) {
-      return <Navigate to="/login" />;
-    }
-
-    return children;
-  };
-
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: (
-        <ProtectedRoute>
-          <Layout />
-        </ProtectedRoute>
-      ),
-      children: [
-        {
-          path: "/",
-          element: <Home />,
-        },
-        {
-          path: "/profile/:id",
-          element: <Profile />,
-        },
-        {
-          path: "/moderator",
-          element: <Moder />,
-        },
-        {
-          path: "/album/:id",
-          element: <Album />,
-        },
-        {
-          path: "*",
-          element: <Error/>,
-        },
-      ],
-    },
-    {
-      path: "/login",
-      element: <Login />,
-    },
-    {
-      path: "/register",
-      element: <Register />,
-    },
-    {
-      path: "/moderator",
-      element: <Moder />,
-    },
-  ]);
-
   return (
-    <div>
-      <RouterProvider router={router} />
-    </div>
+      <BrowserRouter>
+        <Layout/>
+        <AppRouter/>
+      </BrowserRouter>
   );
 }
 
