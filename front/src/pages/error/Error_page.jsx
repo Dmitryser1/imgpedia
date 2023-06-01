@@ -5,7 +5,7 @@ const Error_page = () => {
       <div className="error_page">
         <h2>Error 404</h2>
         <p>Page not found</p>
-        <Link to="/">Back to home</Link>
+        <Link to="/home">Back to home</Link>
       </div>
     )
   }

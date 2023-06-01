@@ -1,23 +1,12 @@
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Route,
-  Outlet,
-  Navigate,
-  BrowserRouter,
-} from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import Error from "./pages/error/Error_page";
-import Home from "./pages/home/Home";
-import Profile from "./pages/profile/Profile";
-import Moder from "./pages/moder/Moder";
 import "./style.scss";
-import { useContext } from "react";
+import React, {useContext, useEffect, useState} from 'react';
+import {BrowserRouter} from "react-router-dom";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/authContext";
-import Album from "./pages/album/Album";
 import AppRouter from "./components/AppRouter";
 
 function App() {
