@@ -13,10 +13,11 @@ const Register = observer(() => {
   const [password, setPassword] = useState('')
 
   const handleRegister = async () => {
-    let data;
-    data = await registration(email, password)
-    user.setUser(user)
-    user.setIsAuth(true)
+   // let data;
+    console.log('Матье')
+    //data = await registration(email, password)
+    //user.setUser(user)
+    //user.setIsAuth(true)
   };
   
   return (
@@ -39,7 +40,7 @@ const Register = observer(() => {
           <form>
             <input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
             <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
-            <button onClick={handleRegister}>Register</button>
+            <button onClick={console.log(232133213132112312312312) /*handleRegister*/}>Register</button>
           </form>
         </div>
       </div>
