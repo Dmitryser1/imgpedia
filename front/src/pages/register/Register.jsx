@@ -16,17 +16,18 @@ const Register = observer(() => {
   const [password, setPassword] = useState('')
 
   const handleRegister = async () => {
-    try{
+    //try{
     console.log(email)
     console.log(password)
     let data;
     data = await registration(email, password)
-    console.log(data)
+    console.log(111)
+    console.log(111,data)
     user.setUser(data)
     user.setIsAuth(true)
     navigation(LOGIN_ROUTE)
-  } catch (e)
-      {alert(e.response.data.message)  }
+  //} catch (e)
+  //    {alert(e.response.data.message)  }
   };
   
   return (
