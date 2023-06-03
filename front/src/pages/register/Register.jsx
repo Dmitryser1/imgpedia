@@ -12,19 +12,21 @@ const Register = observer(() => {
   const {user} = useContext(Context)
   const location = useLocation()
   const navigation = useNavigate()
-  const isLogin = location.pathname === LOGIN_ROUTE
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const handleRegister = async () => {
     try{
+    console.log(email)
+    console.log(password)
     let data;
     data = await registration(email, password)
+    console.log(data)
     user.setUser(data)
     user.setIsAuth(true)
-    navigation(HOME_ROUTE)
+    navigation(LOGIN_ROUTE)
   } catch (e)
-    {alert(e.response.data.message)  }
+      {alert(e.response.data.message)  }
   };
   
   return (

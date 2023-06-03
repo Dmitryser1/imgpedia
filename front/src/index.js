@@ -8,6 +8,8 @@ import ImageStore from "./store/ImageStore";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 export const Context = createContext(null)
+
+console.log(process.env.REACT_APP_API_URL)
 root.render(
   <React.StrictMode>
     <Context.Provider value={{
