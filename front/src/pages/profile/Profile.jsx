@@ -13,8 +13,9 @@ import Posts from "../../components/posts/Posts";
 import Image_list from "../../components/Imagelist/Image_list_prof"
 import imgbg from "../../assets/img1.jpg";
 import profile_image from "../../assets/kermit.jpg";
+import { observer } from "mobx-react-lite";
 
-const Profile = () => {
+const Profile = observer(() => {
   return (
     <div className="profile">
       <div className="images">
@@ -56,6 +57,6 @@ const Profile = () => {
       </div>
     </div>
   );
-};
+});
 
 export default Profile;
