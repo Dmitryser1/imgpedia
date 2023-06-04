@@ -20,9 +20,9 @@ export const authRoutes = [
         Component: Album
     },
     {
-        path: HOME_ROUTE + '/:id',
+        path: HOME_ROUTE,
         Component: Home
-    },
+    }
 
 ]
 

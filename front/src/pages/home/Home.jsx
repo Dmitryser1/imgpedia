@@ -23,9 +23,8 @@ function srcset(image, size, rows = 1, cols = 1) {
   };
 }
 
-const Home = observer(() => {
+const Home =() => {
   const {image} = useContext(Context);
-  //console.log(image)
   return (
     <div className="home">
     <ImageList
@@ -45,5 +44,5 @@ const Home = observer(() => {
     </ImageList>
     </div>
   )
-});
+};
 export default Home

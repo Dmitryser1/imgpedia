@@ -2,7 +2,7 @@ import {$authHost, $host} from "./index";
 import jwt_decode from "jwt-decode";
 
 export const createComplaint = async (complaints) => {
-    const {data} = await $authHost.post('api/complaints', complaints)
+    const {data} = await $authHost.post('api/complaints', {complaints})
     return data
 }
 
@@ -11,8 +11,8 @@ export const fetchComplaint = async () => {
     return data
 }
 
-export const createImage = async (brand) => {
-    const {data} = await $authHost.post('api/photos', photos)
+export const createImage = async (id,photos) => {
+    const {data} = await $authHost.post(`api/galleries/${id}/update`, {photos})
     return data
 }
 
@@ -21,8 +21,18 @@ export const fetchImage = async () => {
     return data
 }
 
-export const createAlbum = async (galleries) => {
-    const {data} = await $authHost.post('api/galleries', galleries)
+export const createAlbum = async (galleries, photos) => {
+    const formData = new FormData();
+    formData.append('GallerieName', galleries);
+    formData.append('Mainphoto', photos);
+
+    const config = {
+        headers: {
+            'Content-Type': 'multipart/x-www-form-urlencoded',
+        },
+    };
+
+    const {data} = await $authHost.post('api/galleries', formData, config)
     return data
 }
 
