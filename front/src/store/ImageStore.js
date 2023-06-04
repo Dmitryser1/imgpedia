@@ -6,11 +6,11 @@ export default class ImageStore {
     }
 
 
-    setPhoto(photos){
+    setImage(photos){
         this._photos = photos
     }
 
-    getPhoto(){
+    getImage(){
         return this._photos
     }
 
