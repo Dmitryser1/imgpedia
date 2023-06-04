@@ -19,21 +19,18 @@ import { Button } from "@mui/material";
 import { createAlbum, createImage } from "../../http/AlbumAPI";
 
 
-function Raw(props) {
-  return null;
-}
-
-Raw.PropTypes = {children: PropTypes.node};
-
 const Navbar = observer(() => {
   const { toggle, darkMode } = useContext(DarkModeContext);
   const { user } = useContext(Context);
   const {image} = useContext(Context)
   const [GalleryId, setGalleryid] = useState('')
-  const [photo, setPhoto] = useState('')
+  const [photo, setPhoto] = useState(null)
   const [Mainphoto, setMainphoto] = useState('')
   const [GalleryName, setGalleryname] = useState('')
-
+  
+const handleFileSelect = async(event) => {
+  setPhoto(event.target.files[0])
+};  
 
   const addPhoto = async () => {
     try{
@@ -44,14 +41,18 @@ const Navbar = observer(() => {
   } catch (e)
       {alert(e.response.data.message)}
   };
+
+
   const createGallery = async () => {
     try{
     let data;
-    data = await createAlbum(GalleryName,Mainphoto)
-    image.setAlbum(data)
+    data = await createAlbum(GalleryName,photo)
   } catch (e)
       {alert(e.response.data.message)}
   };
+
+
+
   const navigate = useNavigate()
   const logOut = ()=>{
       localStorage.removeItem('token');
@@ -80,8 +81,14 @@ const Navbar = observer(() => {
         <input type="galleryid" placeholder="galleryid" value={GalleryId} onChange={e => setGalleryid(e.target.value)} />
           <input type="photo" placeholder="photo" value={photo} onChange={e => setPhoto(e.target.value)} />
         <Button onClick={() => addPhoto()}> Add </Button>
+    
         <input type="galleryname" placeholder="galleryname" value={GalleryName} onChange={e => setGalleryname(e.target.value)} />
-        <input type="photo" placeholder="photo" value={Mainphoto} onChange={e => setMainphoto(e.target.value)} />
+        <input type="file" accept="image/*" onChange={handleFileSelect} />
+
+<Button variant="primary" className="mx-3" onClick={() =>createGallery()} >
+            Поменять фото
+        </Button>
+
         <Button onClick={() => createGallery()}> Create</Button>
       </div>
       <div className="right">

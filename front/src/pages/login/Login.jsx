@@ -41,7 +41,7 @@ const Login = observer(() => {
         <div className="right">
           <h1>Login</h1>
           <form>
-            <input type="text" placeholder="Username" value={email} onChange={e => setEmail(e.target.value)} />
+            <input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
             <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
             <button onClick={handleLogin}>Login</button>
           </form>
