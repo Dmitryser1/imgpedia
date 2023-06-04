@@ -15,7 +15,7 @@ const AppRouter = () => {
             {publicRoutes.map(({path, Component}) =>
                 <Route key={path} path={path} element={<Component/>} exact/>
             )}
-            <Route path={'/home'} element={<Navigate to={HOME_ROUTE}/>} />
+            <Route path={'*'} element={<Navigate to={HOME_ROUTE}/>} />
         </Routes>
     );
 };

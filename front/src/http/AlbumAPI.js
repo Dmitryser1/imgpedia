@@ -22,17 +22,8 @@ export const fetchImage = async () => {
 }
 
 export const createAlbum = async (galleries, photos) => {
-    const formData = new FormData();
-    formData.append('GallerieName', galleries);
-    formData.append('Mainphoto', photos);
 
-    const config = {
-        headers: {
-            'Content-Type': 'multipart/x-www-form-urlencoded',
-        },
-    };
-
-    const {data} = await $authHost.post('api/galleries', formData, config)
+    const {data} = await $authHost.post('api/galleries', {galleries, photos})
     return data
 }
 

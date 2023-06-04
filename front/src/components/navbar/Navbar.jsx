@@ -31,7 +31,7 @@ const Navbar = observer(() => {
   const {image} = useContext(Context)
   const [GalleryId, setGalleryid] = useState('')
   const [photo, setPhoto] = useState('')
-  const [photoo, setPhotoo] = useState('')
+  const [Mainphoto, setMainphoto] = useState('')
   const [GalleryName, setGalleryname] = useState('')
 
 
@@ -47,7 +47,7 @@ const Navbar = observer(() => {
   const createGallery = async () => {
     try{
     let data;
-    data = await createAlbum(GalleryName,photoo)
+    data = await createAlbum(GalleryName,Mainphoto)
     image.setAlbum(data)
   } catch (e)
       {alert(e.response.data.message)}
@@ -81,7 +81,7 @@ const Navbar = observer(() => {
           <input type="photo" placeholder="photo" value={photo} onChange={e => setPhoto(e.target.value)} />
         <Button onClick={() => addPhoto()}> Add </Button>
         <input type="galleryname" placeholder="galleryname" value={GalleryName} onChange={e => setGalleryname(e.target.value)} />
-        <input type="photo" placeholder="photo" value={photoo} onChange={e => setPhotoo(e.target.value)} />
+        <input type="photo" placeholder="photo" value={Mainphoto} onChange={e => setMainphoto(e.target.value)} />
         <Button onClick={() => createGallery()}> Create</Button>
       </div>
       <div className="right">

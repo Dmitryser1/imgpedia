@@ -11,6 +11,8 @@ class GalleryController{
             
             const {GalleryName} = req.body
             const  {Mainphoto} = req.files
+            console.log(req.body)
+            console.log(req.files)
         
             let filename = uuid.v4() + '.jpg'
             
