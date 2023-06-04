@@ -39,7 +39,7 @@ const Navbar = observer(() => {
   return (
     <div className="navbar">
       <div className="left">
-        <Link to={HOME_ROUTE} style={{ textDecoration: "none" }}>
+        <Link to={HOME_ROUTE +'/'+user.getUserId()} style={{ textDecoration: "none" }}>
           <span>Home</span>
         </Link>
         {darkMode ? (

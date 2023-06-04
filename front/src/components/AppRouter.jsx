@@ -6,6 +6,7 @@ import { Context } from '../index';
 
 const AppRouter = () => {
     const {user}= useContext(Context);
+    console.log(user)
     return(
         <Routes>
             {user.isAuth == true && authRoutes.map(({path, Component}) =>
@@ -14,7 +15,7 @@ const AppRouter = () => {
             {publicRoutes.map(({path, Component}) =>
                 <Route key={path} path={path} element={<Component/>} exact/>
             )}
-            <Route path='/home' element={<Navigate to={HOME_ROUTE}/>} />
+            <Route path={'/home' + '/'+ user.getUserId() } element={<Navigate to={HOME_ROUTE + '/' + user.getUserId()}/>} />
         </Routes>
     );
 };
