@@ -2,7 +2,6 @@ import Stories from "../../components/stories/Stories"
 import Posts from "../../components/posts/Posts"
 import Share from "../../components/share/Share"
 import "./home.scss"
-import Image_list from "../../components/Imagelist/Image_list"
 import {Avatar, Box } from '@mui/material';
 import React , {useContext} from 'react';
 import ImageList from '@mui/material/ImageList';
@@ -24,17 +23,27 @@ function srcset(image, size, rows = 1, cols = 1) {
   };
 }
 
-const Home = observer(() => {
+const Home =() => {
   const {image} = useContext(Context);
-  //console.log(image)
   return (
     <div className="home">
-    <ImageList
+    
+    </div>
+  )
+};
+
+export default Home
+
+/*
+<ImageList
       sx={{ width: 1, height: 1 }}
       variant="quilted"
       cols={8}
     >
-      {image._photos.map(item => (
+      
+    
+    </ImageList>
+  {image._photos.map(item => (
         <ImageListItem key={item.img} cols={item.cols || 1} rows={item.rows || 1}>
           <img
             {...srcset(item.img, 120, item.rows, item.cols)}
@@ -43,8 +52,4 @@ const Home = observer(() => {
           />
         </ImageListItem>
       ))}
-    </ImageList>
-    </div>
-  )
-});
-export default Home
+*/

@@ -1,7 +1,34 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import "./register.scss";
+import { registration } from "../../http/userAPI";
+import { useContext, useState } from "react";
+import { observer } from "mobx-react-lite";
+import { Context } from "../../index";
+import { HOME_ROUTE, LOGIN_ROUTE } from "../../utils/consts";
 
-const Register = () => {
+
+
+const Register = observer(() => {
+  const {user} = useContext(Context)
+  const location = useLocation()
+  const navigation = useNavigate()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleRegister = async () => {
+    try{
+    let data;
+    console.log(location)
+    console.log(navigation)
+    data = await registration(email, password)
+    user.setUser(data)
+    user.setIsAuth(true)
+    console.log("login&&&&", data)
+    navigation.navigate(HOME_ROUTE)
+  } catch (e)
+      {alert(e.response.data.message)}
+  };
+  
   return (
     <div className="register">
       <div className="card">
@@ -20,16 +47,14 @@ const Register = () => {
         <div className="right">
           <h1>Register</h1>
           <form>
-            <input type="text" placeholder="Username" />
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
-            <input type="text" placeholder="Name" />
-            <button>Register</button>
+            <input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
+            <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
+            <button onClick={handleRegister}>Register</button>
           </form>
         </div>
       </div>
     </div>
   );
-};
+});
 
 export default Register;

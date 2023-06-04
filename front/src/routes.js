@@ -22,7 +22,7 @@ export const authRoutes = [
     {
         path: HOME_ROUTE,
         Component: Home
-    },
+    }
 
 ]
 
