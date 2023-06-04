@@ -15,13 +15,13 @@ export const login = async (email, password) => {
 }
 
 export const getAllUsers = async () => {
-    const {data} = await $host.get('api/user')
+    const {data} = await $host.get('api/users')
     return data
 }
 
 export const check = async () => {
     try {
-        const {data} = await $authHost.get('api/user/auth')
+        const {data} = await $authHost.get('api/users/auth')
         localStorage.setItem('token', data.token)
         return jwt_decode(data.token)
     } catch (error) {
@@ -36,3 +36,19 @@ export const check = async () => {
         }
     }
 }
+
+export const ChangePhoto = async (Id, photo) => {
+    const formData = new FormData();
+    formData.append('Id', Id);
+    formData.append('photo', photo);
+
+    const config = {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+    };
+
+    const { data } = await $authHost.post('api/users/photo', formData, config);
+    return data;
+
+};
