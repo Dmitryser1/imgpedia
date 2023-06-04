@@ -22,6 +22,10 @@ export default class UserStore {
         return this._user
     }
 
+    getUserId(){
+        return (this._user).id
+    }
+
     getUsersWithId(id) {
         console.log(id)
         return this._users.find(item => item.id === parseInt(id));
