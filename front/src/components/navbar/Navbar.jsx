@@ -11,10 +11,18 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { useContext } from "react";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { AuthContext } from "../../context/authContext";
-import { HOME_ROUTE, LOGIN_ROUTE } from "../../utils/consts";
-import { Context } from "../..";
+import { HOME_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE } from "../../utils/consts";
+import * as PropTypes from "prop-types";
+import { Context } from "../../index";
 import { observer } from "mobx-react-lite";
 import { Button } from "@mui/material";
+
+
+function Raw(props) {
+  return null;
+}
+
+Raw.PropTypes = {children: PropTypes.node};
 
 const Navbar = observer(() => {
   const { toggle, darkMode } = useContext(DarkModeContext);
@@ -47,7 +55,7 @@ const Navbar = observer(() => {
       </div>
       <div className="right">
         <div className="user">
-        <Link to="/profile/1" style={{ textDecoration: "none" }}>
+        <Link to={PROFILE_ROUTE+'/'+user.getUserId()} style={{ textDecoration: "none" }}>
           <img
             src={user.profilePic}
             alt=""
