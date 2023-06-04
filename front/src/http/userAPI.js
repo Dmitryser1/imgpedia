@@ -19,6 +19,7 @@ export const getAllUsers = async () => {
     return data
 }
 
+
 export const check = async () => {
     try {
         const {data} = await $authHost.get('api/users/auth')
