@@ -24,7 +24,7 @@ const App = observer(() => {
       </div>
     );
   };
-  /*const {user} = useContext(Context)
+  const {user} = useContext(Context)
   const[loading,setLoading]=useState(true)
   const authToken = localStorage.getItem('token');
   useEffect(() => {
@@ -34,7 +34,6 @@ const App = observer(() => {
                   getAllUsers(),
                   check(authToken),
               ]).then(([users, userData]) => {
-                  user.setUsers(users);
                   if (userData) {
                       user.setUser(userData);
                       user.setIsAuth(true);
@@ -59,7 +58,6 @@ const App = observer(() => {
   if (loading){
       return <Spinner animation ={"grow"}></Spinner>
   }
-*/
 
   return (
       <BrowserRouter>

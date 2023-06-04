@@ -7,16 +7,26 @@ import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useContext } from "react";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { AuthContext } from "../../context/authContext";
-import { HOME_ROUTE } from "../../utils/consts";
+import { HOME_ROUTE, LOGIN_ROUTE } from "../../utils/consts";
 import { Context } from "../..";
+import { observer } from "mobx-react-lite";
+import { Button } from "@mui/material";
 
-const Navbar = () => {
+const Navbar = observer(() => {
   const { toggle, darkMode } = useContext(DarkModeContext);
   const { user } = useContext(Context);
+  const navigate = useNavigate()
+  const logOut = ()=>{
+      localStorage.removeItem('token');
+      user.setUser({})
+      user.setIsAuth(false)
+      navigate(LOGIN_ROUTE)
+      window.location.reload()
+}
 
   return (
     <div className="navbar">
@@ -44,10 +54,11 @@ const Navbar = () => {
           />
         </Link>
           <span>{user.name}</span>
+          <Button variant={"outline-info"} className="ms-2" onClick={() => logOut()}>Log out</Button>
         </div>
       </div>
     </div>
   );
-};
+});
 
 export default Navbar;

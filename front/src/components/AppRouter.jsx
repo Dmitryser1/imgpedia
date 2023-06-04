@@ -5,17 +5,17 @@ import { HOME_ROUTE, LOGIN_ROUTE, REGISTER_ROUTE } from '../utils/consts';
 import { Context } from '../index';
 
 const AppRouter = () => {
-    //const {user}= useContext(Context);
-    const isAuth=true;
+    const {user}= useContext(Context);
+    console.log(user)
     return(
         <Routes>
-            {isAuth == true && authRoutes.map(({path, Component}) =>
+            {user.isAuth == true && authRoutes.map(({path, Component}) =>
                 <Route key={path} path={path} element={<Component/>} exact/>
             )}
             {publicRoutes.map(({path, Component}) =>
                 <Route key={path} path={path} element={<Component/>} exact/>
             )}
-            <Route path='*' element={<Navigate to={REGISTER_ROUTE}/>} />
+            <Route path='/home' element={<Navigate to={HOME_ROUTE}/>} />
         </Routes>
     );
 };

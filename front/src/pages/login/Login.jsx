@@ -1,16 +1,16 @@
 import { useContext , useState} from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/authContext";
 import "./login.scss";
 import { login } from "../../http/userAPI";
-import { LOGIN_ROUTE } from "../../utils/consts";
+import { HOME_ROUTE, LOGIN_ROUTE } from "../../utils/consts";
 import { observer } from "mobx-react-lite";
 import { Context } from "../..";
 
 const Login = observer(() => {
   const {user} = useContext(Context)
   const location = useLocation()
-  const isLogin = location.pathname === LOGIN_ROUTE
+  const navigation = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -19,6 +19,8 @@ const Login = observer(() => {
     data = await login(email, password)
     user.setUser(user)
     user.setIsAuth(true)
+    navigation(HOME_ROUTE)
+    console.log(data)
   };
 
   return (
