@@ -8,15 +8,20 @@ const fs = require('fs');
 class GalleryController{
     async create(req, res, next){
         try{
-            
-            const {GalleryName} = req.body
-            const  {Mainphoto} = req.files
+            //const {GalleryName} = req.body
             console.log(req.body)
             console.log(req.files)
+            //const  {Mainphoto} = req.files
+            const{GalleryName} = req.body
+           
+            let Mainphoto = req.files.photos
+           
+            //console.log("MAINPH", Mainphoto)
+           
         
             let filename = uuid.v4() + '.jpg'
             
-            console.log("121212", path.resolve(__dirname, '..', 'static', filename))
+            //console.log("121212", path.resolve(__dirname, '..', 'static', filename))
            
             await Mainphoto.mv(path.resolve(__dirname, '..', 'static', filename))
 
