@@ -16,7 +16,7 @@ import * as PropTypes from "prop-types";
 import { Context } from "../../index";
 import { observer } from "mobx-react-lite";
 import { Button } from "@mui/material";
-import { createAlbum, createImage } from "../../http/AlbumAPI";
+import { createAlbum, updateImage } from "../../http/AlbumAPI";
 
 
 const Navbar = observer(() => {
@@ -35,9 +35,10 @@ const handleFileSelect = async(event) => {
   const addPhoto = async () => {
     try{
     let data;
-    data = await createImage(GalleryId, photo)
-    console.log(data, 'addphoto')
+    data = await updateImage(GalleryId, photo)
+    console.log(data)
     image.setImage(data)
+    console.log(image)
   } catch (e)
       {alert(e.response.data.message)}
   };
@@ -73,23 +74,20 @@ const handleFileSelect = async(event) => {
         ) : (
           <DarkModeOutlinedIcon onClick={toggle} />
         )}
-        <GridViewOutlinedIcon />
         <div className="search">
           <SearchOutlinedIcon />
           <input type="text" placeholder="Search..." />
         </div>
         <input type="galleryid" placeholder="galleryid" value={GalleryId} onChange={e => setGalleryid(e.target.value)} />
-          <input type="photo" placeholder="photo" value={photo} onChange={e => setPhoto(e.target.value)} />
+        <input type="file" accept="image/*" onChange={handleFileSelect} />
         <Button onClick={() => addPhoto()}> Add </Button>
     
         <input type="galleryname" placeholder="galleryname" value={GalleryName} onChange={e => setGalleryname(e.target.value)} />
         <input type="file" accept="image/*" onChange={handleFileSelect} />
 
 <Button variant="primary" className="mx-3" onClick={() =>createGallery()} >
-            Поменять фото
+            Альбом
         </Button>
-
-        <Button onClick={() => createGallery()}> Create</Button>
       </div>
       <div className="right">
         <div className="user">
