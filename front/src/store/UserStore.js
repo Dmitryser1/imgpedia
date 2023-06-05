@@ -3,6 +3,8 @@ export default class UserStore {
     constructor() {
         this._isAuth=false
         this._user =[]
+        this._photos=[]
+        this._galleries=[]
         makeAutoObservable(this)
     }
 
@@ -17,7 +19,7 @@ export default class UserStore {
     isAuth(){
         return this._isAuth
     }
-    
+
 
     getUser(){
         return this._user
@@ -31,4 +33,28 @@ export default class UserStore {
         console.log(id)
         return this._users.find(item => item.id === parseInt(id));
     }
+
+    
+    setImage(photos){
+        this._photos = photos
+    }
+
+    getAllImagesfr(id){
+        return this._photos.filter(item => item.GalleryId === id);
+    }
+    getAllImagesfd(id){
+        return this._photos.find(item => item.GalleryId === parseInt(id));
+    }
+    getImage(){
+        return this._photos
+    }
+
+    setAlbum(albums){
+        this._albums = albums
+    }
+
+    getAlbum(){
+        return this._albums
+    }
+
 }
