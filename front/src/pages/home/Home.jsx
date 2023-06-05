@@ -46,6 +46,7 @@ const Home = () => {
     }
     setAlbums(albums)
     console.log(albums)
+    console.log(user.getAlbum())
 
   };
 
