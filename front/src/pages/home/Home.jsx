@@ -27,13 +27,12 @@ function srcset(image, size, rows = 1, cols = 1) {
 const Home =() => {
   const {user} = useContext(Context);
   const KrutaiaFunction = async () => {
-    let data;
-    data = await getAllPhotos(1)
+    let data 
+    data = await getAllPhotos(1);
     console.log(1)
     console.log(data)
     user.setImage(data)
-    console.log(user)
-    console.log(localStorage.getItem('token1'))
+    console.log(user.getAllImagesfd(1).photo)
   };
 
   useEffect(() => {
@@ -44,22 +43,18 @@ const Home =() => {
   return (
     <div className="home">
       <h1>home</h1>
-    {/*<ImageList
+    <ImageList
       sx={{ width: 1, height: 1 }}
       variant="quilted"
       cols={8}
     >
-      {image._photos.map(item => (
-        <ImageListItem key={item.img} cols={item.cols || 1} rows={item.rows || 1}>
+        <ImageListItem key={user.getAllImagesfd(1).photo} cols={ 1} rows={ 1}>
           <img
-            {...srcset(item.img, 120, item.rows, item.cols)}
-            alt={item.title}
+            {...srcset(user.getAllImagesfd(1).photo, 120, 1, 1)}
             loading="lazy"
           />
-          {console.log(item)}
         </ImageListItem>
-      ))}
-      </ImageList>*/}
+      </ImageList>
     </div>
   )
 };
