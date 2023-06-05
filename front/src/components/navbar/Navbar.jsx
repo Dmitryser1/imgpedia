@@ -7,16 +7,17 @@ import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { useContext, useState } from "react";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { AuthContext } from "../../context/authContext";
-import { HOME_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE } from "../../utils/consts";
+import { HOME_ROUTE, LOGIN_ROUTE, MODER_ROUTE, PROFILE_ROUTE } from "../../utils/consts";
 import * as PropTypes from "prop-types";
 import { Context } from "../../index";
 import { observer } from "mobx-react-lite";
 import { Button } from "@mui/material";
 import { createAlbum, updateImage } from "../../http/AlbumAPI";
+
 
 
 const Navbar = observer(() => {
@@ -27,9 +28,11 @@ const Navbar = observer(() => {
   const [photo, setPhoto] = useState(null)
   const [Mainphoto, setMainphoto] = useState('')
   const [GalleryName, setGalleryname] = useState('')
+  const navigation = useNavigate()
   
 const handleFileSelect = async(event) => {
   setPhoto(event.target.files[0])
+  console.log(user.getUser().role)
 };  
 
   const addPhoto = async () => {
@@ -51,6 +54,14 @@ const handleFileSelect = async(event) => {
   } catch (e)
       {alert(e.response.data.message)}
   };
+
+  const handleModer = async () => {
+    if(user.getUser().role == 1){
+      navigation(MODER_ROUTE +'/'+user.getUserId())
+    } else {
+      alert("You are not moder bitch")
+    }
+  }
 
 
 
@@ -78,6 +89,7 @@ const handleFileSelect = async(event) => {
           <SearchOutlinedIcon />
           <input type="text" placeholder="Search..." />
         </div>
+        <Button onClick={()=> handleModer()}>Moderator</Button>
         <input type="galleryid" placeholder="galleryid" value={GalleryId} onChange={e => setGalleryid(e.target.value)} />
         <input type="file" accept="image/*" onChange={handleFileSelect} />
         <Button onClick={() => addPhoto()}> Add </Button>
