@@ -28,10 +28,12 @@ const Home =() => {
   const {user} = useContext(Context);
   const KrutaiaFunction = async () => {
     let data;
-    data = getAllPhotos(1)
+    data = await getAllPhotos(1)
+    console.log(1)
     console.log(data)
     user.setImage(data)
     console.log(user)
+    console.log(localStorage.getItem('token1'))
   };
 
   useEffect(() => {
