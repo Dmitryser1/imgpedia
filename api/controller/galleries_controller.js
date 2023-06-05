@@ -65,7 +65,7 @@ class GalleryController{
             const {id} = req.params
             const photos = await Photo.findAll({where:{GalleryId: id}})
             console.log(photos)
-            return res.json(photos.photo)
+            return res.json(photos)
 
         }catch(e){
             next(ApiError.badRequest("Something wrong getallph"))
