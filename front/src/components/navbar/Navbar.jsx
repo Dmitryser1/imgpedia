@@ -20,8 +20,8 @@ import { createAlbum, updateImage } from "../../http/AlbumAPI";
 
 
 const Navbar = observer(() => {
-  const { toggle, darkMode } = useContext(DarkModeContext);
-  const { user } = useContext(Context);
+  const { toggle, darkMode } = useContext(DarkModeContext)
+  const { user } = useContext(Context)
   const {image} = useContext(Context)
   const [GalleryId, setGalleryid] = useState('')
   const [photo, setPhoto] = useState(null)
