@@ -4,7 +4,7 @@ export default class UserStore {
         this._isAuth=false
         this._user =[]
         this._photos=[]
-        this._galleries=[]
+        this._albums=[]
         makeAutoObservable(this)
     }
 
@@ -56,5 +56,7 @@ export default class UserStore {
     getAlbum(){
         return this._albums
     }
+    
+
 
 }

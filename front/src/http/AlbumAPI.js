@@ -1,15 +1,6 @@
 import {$authHost, $host} from "./index";
 import jwt_decode from "jwt-decode";
 
-export const createComplaint = async (complaints) => {
-    const {data} = await $authHost.post('api/complaints', {complaints})
-    return data
-}
-
-export const fetchComplaint = async () => {
-    const {data} = await $host.get('api/complaints')
-    return data
-}
 
 export const updateImage = async (GalleryId,photos) => {
     const formData = new FormData();
@@ -56,7 +47,9 @@ export const createAlbum = async (galleries, photos) => {
     return data
 }
 
-export const fetchAlbum  = async (galleries) => {
-    const {data} = await $host.get('api/device')
+
+export const getAllAlbums = async () => {
+    const {data} = await $host.get(`api/galleries`)
+    console.log(data)
     return data
 }

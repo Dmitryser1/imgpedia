@@ -1,17 +1,22 @@
 import { makeAutoObservable} from 'mobx'
 export default class AlbumStore {
     constructor() {
-        this._albums ={}
         makeAutoObservable(this)
     }
 
 
-    setAlbum(albums){
-        this._albums = albums
+    setImage(photos){
+        this._photos = photos
     }
 
-    getAlbum(){
-        return this._albums
+    getAllImagesfr(id){
+        return this._photos.filter(item => item.GalleryId === id);
+    }
+    getAllImagesfd(id){
+        return this._photos.find(item => item.GalleryId === parseInt(id));
+    }
+    getImage(){
+        return this._photos
     }
 
 }
