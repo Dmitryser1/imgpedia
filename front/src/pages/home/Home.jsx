@@ -25,13 +25,13 @@ function srcset(image, size, rows = 1, cols = 1) {
 }
 
 const Home =() => {
-  const {image} = useContext(Context);
+  const {user} = useContext(Context);
   const KrutaiaFunction = async () => {
     let data;
     data = getAllPhotos(1)
     console.log(data)
-    image.setImage(data)
-    console.log(image)
+    user.setImage(data)
+    console.log(user)
   };
 
   useEffect(() => {
