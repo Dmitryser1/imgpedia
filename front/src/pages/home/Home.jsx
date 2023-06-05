@@ -31,7 +31,7 @@ const Home =() => {
     data = getAllPhotos(1)
     console.log(data)
     image.setImage(data)
-    console.log(image._photos.then())
+    console.log(image)
   };
 
   useEffect(() => {
@@ -42,22 +42,22 @@ const Home =() => {
   return (
     <div className="home">
       <h1>home</h1>
-    <ImageList
+    {/*<ImageList
       sx={{ width: 1, height: 1 }}
       variant="quilted"
       cols={8}
     >
       {image._photos.map(item => (
-        console.log(item)
         <ImageListItem key={item.img} cols={item.cols || 1} rows={item.rows || 1}>
           <img
             {...srcset(item.img, 120, item.rows, item.cols)}
             alt={item.title}
             loading="lazy"
           />
+          {console.log(item)}
         </ImageListItem>
       ))}
-      </ImageList>
+      </ImageList>*/}
     </div>
   )
 };

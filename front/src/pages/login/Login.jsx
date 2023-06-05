@@ -17,8 +17,10 @@ const Login = observer(() => {
   const handleLogin = async () => {
     let data;
     data = await login(email, password)
+    console.log(data)
     user.setUser(user)
     user.setIsAuth(true)
+    console.log(user)
     navigation(HOME_ROUTE)
     console.log(data)
   };

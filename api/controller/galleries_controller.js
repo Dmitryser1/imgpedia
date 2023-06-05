@@ -31,7 +31,7 @@ class GalleryController{
             const gallery = await Galleries.create({GalleryName, Mainphoto: filename, UserId})
             return res.json(gallery)
         } catch(e){
-            next(ApiError.badRequest("Something wrong"))
+            next(ApiError.badRequest("Something wrong createalb"))
         }
     }
 
@@ -55,18 +55,20 @@ class GalleryController{
             return res.json()
         }
         catch (e){
-            next(ApiError.badRequest("Something wrong"))
+            next(ApiError.badRequest("Something wrong delgal"))
         }
     }
     
     async getAllPhoto(req, res, next){ //Возращает все фото, которые принадлежат галерее
         try{
+            console.log(3)
             const {id} = req.params
-            let photo = await Photo.findAll({where:{GalleryId: id}})
-            return res.json(photo)
+            const photos = await Photo.findAll({where:{GalleryId: id}})
+            console.log(photos)
+            return res.json(photos.photo)
 
         }catch(e){
-            next(ApiError.badRequest("Something wrong"))
+            next(ApiError.badRequest("Something wrong getallph"))
         }
 
     }
@@ -74,14 +76,15 @@ class GalleryController{
     async updatePhoto(req, res, next){
         try{ // Создает обьект фотку с привязкой к галерее, Котороую мы передаем ( в текущую, тут будет где-то метод гета по всем фото, которая этой галерее принадлежат)
             const {GalleryId} = req.body
-            const {photo} = req.files
+            let photo = req.files.photos
+            console.log(3)
             let filename = uuid.v4() + '.jpg'
             await photo.mv(path.resolve(__dirname, '..', 'static', filename))
             const photos = await Photo.create({GalleryId, photo: filename})
             return res.json(photos)
 
         } catch(e){
-            next(ApiError.badRequest("Something wrong"))
+            next(ApiError.badRequest("Something wrong updph"))
         }
     }
 }

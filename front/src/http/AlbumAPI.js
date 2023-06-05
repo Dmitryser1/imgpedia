@@ -11,13 +11,28 @@ export const fetchComplaint = async () => {
     return data
 }
 
-export const createImage = async (id,photos) => {
-    const {data} = await $authHost.post(`api/galleries/${id}/update`, {photos})
+export const updateImage = async (GalleryId,photos) => {
+    const formData = new FormData();
+    formData.append('GalleryId', GalleryId);
+    formData.append('photos', photos);
+
+    const config = {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+    };
+    console.log(GalleryId)
+    console.log(photos)
+    console.log(formData)
+    const {data} = await $authHost.post(`api/galleries/${GalleryId}/update`, formData,config)
+    console.log(data)
     return data
 }
 
-export const fetchImage = async () => {
-    const {data} = await $host.get('api/photos')
+export const getAllPhotos = async (GalleryId) => {
+    console.log(GalleryId)
+    const {data} = await $host.get(`api/galleries/${GalleryId}`)
+    console.log(data)
     return data
 }
 
@@ -33,6 +48,9 @@ export const createAlbum = async (galleries, photos) => {
         },
     };
 
+    console.log(galleries)
+    console.log(photos)
+    console.log(formData)
     const {data} = await $authHost.post('api/galleries', formData, config);
     console.log("data", data)
     return data
