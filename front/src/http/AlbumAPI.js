@@ -23,7 +23,6 @@ export const updateImage = async (GalleryId,photos) => {
 export const getAllPhotos = async (GalleryId) => {
     console.log(GalleryId)
     const {data} = await $host.get(`api/galleries/${GalleryId}`)
-    console.log(data)
     return data
 }
 

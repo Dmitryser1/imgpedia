@@ -25,7 +25,9 @@ const Album = () => {
     const location = useLocation()
 
     const getLastItem = thePath => thePath.substring(thePath.lastIndexOf('/') + 1)
-    const ProfNum = getLastItem(location.pathname)
+    const ProfNum = parseInt(getLastItem(location.pathname))
+
+
     const KrutaiaFunction = async () => {
         let data
         let data2
@@ -37,23 +39,26 @@ const Album = () => {
         let len = (user.getAlbum().length)
         console.log(user.getAllImagesfr(ProfNum))
         let len2 = (user.getAllImagesfr(ProfNum).length)
+        console.log(ProfNum)
         console.log(len)
-        console.log(user.getAlbum()[0].Mainphoto)
+        console.log(len2)
 
-        var albums = []
+        var Albums = []
         var Images = []
         for (var i = 0; i < len; i += 1) {
-            console.log(i)
-            albums.push(user.getAlbum()[i])
+            console.log('i',i)
+            Albums.push(user.getAlbum()[i])
+            console.log(user.getAlbum()[i])
         }
         for (var j = 0; j < len2; j += 1) {
-            console.log(i)
-            Images.push(user.getAllImagesfr(ProfNum - 1)[i].photo)
+            console.log('j',j)
+            Images.push(user.getAllImagesfr(ProfNum)[j].photo)
+            console.log(user.getAllImagesfr(ProfNum)[j].photo)
         }
-        setAlbums(albums)
+        setAlbums(Albums)
         setImages(Images)
         console.log(albums)
-        console.log(Images)
+        console.log(images)
 
     };
 
@@ -106,7 +111,7 @@ const Album = () => {
                 <div className="image_list">
                     <ImageListItem>
                         <img
-                            src={`http://localhost:5000/${user.getAlbum()[ProfNum - 1].Mainphoto}?w=164&h=164&fit=crop&auto=format`}
+                            src={`http://localhost:5000/${user.getAlbum()[ProfNum-1].Mainphoto}?w=164&h=164&fit=crop&auto=format`}
                             loading="lazy"
                         />
                     </ImageListItem>
@@ -116,10 +121,10 @@ const Album = () => {
                         cols={4}
                     >
 
-                        {albums.map((item) => (
+                        {images.map((item) => (
                             <ImageListItem key={`http://localhost:5000/${item}`} cols={item.cols || 1} rows={item.rows || 1}>
                                 <img
-                                    src={`${item}?w=164&h=164&fit=crop&auto=format`}
+                                    src={`http://localhost:5000/${item}?w=164&h=164&fit=crop&auto=format`}
                                     srcSet={`${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                                     loading="lazy"
                                 />
