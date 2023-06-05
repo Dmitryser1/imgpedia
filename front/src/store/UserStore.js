@@ -57,6 +57,9 @@ export default class UserStore {
         return this._albums
     }
     
+    getAlbumWithId(id) {
+        return this._users.find(item => item.id === parseInt(id));
+    }
 
 
 }
