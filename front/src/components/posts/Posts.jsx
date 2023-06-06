@@ -1,33 +1,41 @@
+import { useContext, useEffect, useState } from "react";
 import Post from "../post/Post";
 import "./posts.scss";
+import { getAllAppeals } from "../../http/AlbumAPI";
+import { Container } from "react-bootstrap";
+import { Context } from "../../index";
 
 const Posts = () => {
   //TEMPORARY
-  const posts = [
-    {
-      id: 1,
-      name: "John Doe",
-      userId: 1,
-      profilePic:
-        "https://t3.ftcdn.net/jpg/02/48/42/64/240_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg",
-      desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit",
-      img: "https://t3.ftcdn.net/jpg/03/45/05/92/240_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.jpg",
-    },
-    {
-      id: 2,
-      name: "Jane Doe",
-      userId: 2,
-      profilePic:
-        "https://t3.ftcdn.net/jpg/02/48/42/64/240_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg",
-      desc: "Tenetur iste voluptates dolorem rem commodi voluptate pariatur, voluptatum, laboriosam consequatur enim nostrum cumque! Maiores a nam non adipisci minima modi tempore.",
-      img: "https://t3.ftcdn.net/jpg/03/45/05/92/240_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.jpg",
-    },
-  ];
+  const {user} = useContext(Context)
+  const [appeals,setAppeals]= useState([])
 
+  const KrutaiaFunction = async () => {
+    let data
+    data = await getAllAppeals();
+    console.log(data)
+    user.setAppeal(data)
+    console.log(user.getAppeal().rows[0].text)
+    let len = (user.getAppeal().rows.length)
+    console.log(len)
+    var appeals = []
+    for (var i = 0; i < len; i += 1) {
+      console.log(i)
+      appeals.push(user.getAppeal().rows[i])
+    }
+    setAppeals(appeals)
+    console.log(appeals)
+
+  };
+
+
+  useEffect(() => {
+    KrutaiaFunction()
+  }, [])
   return <div className="posts">
-    {posts.map(post=>(
-      <Post post={post} key={post.id}/>
-    ))}
+ {appeals.map(appeal=>(
+      <Post post={appeal} key={appeal.id}/>
+ ))}
   </div>;
 };
 

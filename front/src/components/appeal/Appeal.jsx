@@ -2,9 +2,12 @@ import React from 'react';
 import {Button, TextField, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Alert, AlertTitle } from "@mui/material";
 import ViewCompactIcon from '@mui/icons-material/ViewCompact';
 import EmojiFlagsIcon from '@mui/icons-material/EmojiFlags';
+import { createAlbum, createAppeal } from '../../http/AlbumAPI';
 
 export default function FormDialog() {
     const [open, setOpen] = React.useState(false);
+    const [appeal, setAppeal] = React.useState('');
+
   
     const handleClickOpen = () => {
       setOpen(true);
@@ -13,7 +16,9 @@ export default function FormDialog() {
     const handleClose = () => {
       setOpen(false);
     };
-    const handleCloseUpdate = () => {
+    const handleCloseUpdate = async () => {
+        let data;
+        data = await createAppeal(appeal)
         setOpen(false);
       };
   
@@ -30,21 +35,14 @@ export default function FormDialog() {
             <DialogContentText>
               
             </DialogContentText>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="name"
-              label="Enter text"
-              type='text'
-              fullWidth 
-            />
+            <input type="text" placeholder="text" value={appeal} onChange={e => setAppeal(e.target.value)} />
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose} color="primary">
               Cancel
             </Button>
             <Button onClick={handleCloseUpdate} color="primary">
-              Update
+              Send
             </Button>
           </DialogActions>
         </Dialog>

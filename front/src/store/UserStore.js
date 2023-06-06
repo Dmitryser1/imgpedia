@@ -5,6 +5,7 @@ export default class UserStore {
         this._user =[]
         this._photos=[]
         this._albums=[]
+        this._appeal=[]
         makeAutoObservable(this)
     }
 
@@ -56,6 +57,15 @@ export default class UserStore {
     getAlbum(){
         return this._albums
     }
+
+    setAppeal(appeal){
+        this._appeal = appeal
+    }
+
+    getAppeal(){
+        return this._appeal
+    }
+    
     
     getAlbumWithId(id) {
         return this._users.find(item => item.id === parseInt(id));

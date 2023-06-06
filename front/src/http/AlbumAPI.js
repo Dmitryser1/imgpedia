@@ -45,7 +45,16 @@ export const createAlbum = async (galleries, photos) => {
     console.log("data", data)
     return data
 }
+export const createAppeal = async (text) => {
 
+    const {data} = await $authHost.post('api/complaints', {text});
+    return data
+}
+
+export const getAllAppeals = async () => {
+    const {data} = await $host.get(`api/complaints`)
+    return data
+}
 
 export const getAllAlbums = async () => {
     const {data} = await $host.get(`api/galleries`)

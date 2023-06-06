@@ -4,13 +4,13 @@ const ApiError = require('../error/ApiError.js')
 class complaintsController{
     async create (req, res, next){
         try{
-            const {text, status} = req.body
+            const {text} = req.body
             let UserId = req.user.id
            
-            const complaint = await Complaint.create({text, status, UserId})
+            const complaint = await Complaint.create({text, UserId})
             return res.json(complaint)
         } catch(e){
-            next(ApiError.badRequest("Something wrong"))
+            next(ApiError.badRequest("Something wrong crte appeal"))
         }
     }
 

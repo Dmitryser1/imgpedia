@@ -15,36 +15,20 @@ const Post = ({ post }) => {
       <div className="container">
         <div className="user">
           <div className="userInfo">
-            <img src={post.profilePic} alt="" />
             <div className="details">
               <Link
-                to={`/profile/${post.userId}`}
+                to={`http://localhost:5000/album/${post.UserId}`}
                 style={{ textDecoration: "none", color: "inherit" }}
               >
-                <span className="name">{post.name}</span>
+                <span className="name">{post.UserId}</span>
               </Link>
-              <span className="date">1 min ago</span>
+              <span className="date">{post.createdAt}</span>
             </div>
           </div>
           <MoreHorizIcon />
         </div>
         <div className="content">
-          <p>{post.desc}</p>
-          <img src={post.img} alt="" />
-        </div>
-        <div className="info">
-          <div className="item">
-            <DoneIcon /> 
-            Apply
-          </div>
-          <div className="item" >
-            <CloseIcon />
-            Decline
-          </div>
-          <div className="item">
-            <ShareOutlinedIcon />
-            Album
-          </div>
+          <p>Text appeal: {post.text}</p>
         </div>
       </div>
     </div>
